@@ -17,10 +17,12 @@ This project explores the deployment of TensorFlow Lite for Microcontrollers (TF
 ## Repository Contents
 
 - **/models/**: Contains MLCommons-Tiny benchmark models in TFLite and in their C byte array version.
-- **/cc/**: Source code used for cross-compiling the TFLite Micro API for RISC-V 32-bit implementation.
+- **/cc/**: Source code used for cross-compiling the TFLite Micro API for RISC-V 32-bit implementation and simulation on Gem5.
+- **/elf/**: Cross-compiled ELFs for Gem5 simulation.
+- **/spike/**: Source code and cross-compiled ELFs for Spike simulation.
 - **/results/**: Profiling data and performance analysis using Gem5 simulators (empty, to be filled by running the Makefile).
 - **/paper/**: The paper titled *"RISC-V Meets TFLite Micro: Insights from MLCommons Tiny Benchmark"* in PDF format.
-- **/scripts/**: Helper scripts for running benchmarks and simulations on Spike and Gem5.
+- **/scripts/**: Python scripts for configuring RISCV cores for Gem5 simulations.
 
 ## Getting Started
 
@@ -28,13 +30,27 @@ This project explores the deployment of TensorFlow Lite for Microcontrollers (TF
 
 Before running the code, ensure you have the following installed:
 
-- **Spike Simulator:** The RISC-V ISA simulator. See installation instructions [here](https://github.com/riscv/riscv-isa-sim).
+- **Spike Simulator:** The RISC-V ISA simulator with proxy kernel. See installation instructions here for [spike](https://github.com/riscv/riscv-isa-sim) and [pk](https://github.com/riscv-software-src/riscv-pk).
+- **RISC-V 32-bit Cross-Compiler:** Required for compiling code targeting the RISC-V 32-bit architecture. Instructions for installation can be found [here](https://github.com/riscv-collab/riscv-gnu-toolchain).
 - **Gem5 Simulator:** A modular platform for computer-system architecture research. See installation instructions [here](https://www.gem5.org/documentation/general_docs/building).
 - **TFLite Micro:** TensorFlow Lite for Microcontrollers. Refer to the [official TensorFlow documentation](https://www.tensorflow.org/lite/microcontrollers) for setup and installation.
 
-### Installation
+### Usage
 
-1. Clone the repository:
+In order to produce the .a tflite-micro static library, modify the [Makefile](https://github.com/tensorflow/tflite-micro/blob/89f99a9e7bc0c4db74bd45fdcb8e6e91def406e8/tensorflow/lite/micro/tools/make/Makefile) in tflite-micro github repository by substituting the riscv-gnu-toolchain in the compiler flags and run the Makefile. Beware to first download the external libraries (e.g. flatbuffers, gemmlowp).
 
-   ```bash
-   git clone https://github.com/your-username/riscv-tflite-micro-benchmark.git
+To perform Spike and Gem5 use the Makefile and follow the description in the paper.
+
+
+### Citation
+
+If you use this work in your research, please consider citing the following paper:
+
+```bibtex
+@article{aymone2024riscvtflite,
+  title={RISC-V Meets TFLite Micro: Insights from MLCommons Tiny Benchmark},
+  author={Aymone, Fabrizio Maria},
+  journal={Politecnico di Milano},
+  year={2024}
+}
+
