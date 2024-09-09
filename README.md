@@ -50,7 +50,6 @@ If you use this work in your research, please consider citing the following pape
 @article{aymone2024riscvtflite,
   title={RISC-V Meets TFLite Micro: Insights from MLCommons Tiny Benchmark},
   author={Aymone, Fabrizio Maria},
-  journal={Politecnico di Milano},
   year={2024}
 }
 
